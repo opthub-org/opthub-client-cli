@@ -144,7 +144,7 @@ jobs:
           pip install -r docs/requirements.txt
       - name: Build Sphinx
         if: ${{ github.event_name == 'push' }}
-        runs: |
+        run: |
           set -ex
           pushd docs/
           make html
