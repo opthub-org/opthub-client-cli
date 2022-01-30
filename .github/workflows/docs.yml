@@ -21,22 +21,22 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-      # # https://github.com/marketplace/actions/setup-python
-      # # ^-- This gives info on matrix testing.
-      # - name: Install Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: 3.9
-      # # https://docs.github.com/en/actions/guides/building-and-testing-python#caching-dependencies
-      # # ^-- How to set up caching for pip on Ubuntu
-      # - name: Cache pip
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: ~/.cache/pip
-      #     key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pip-
-      #       ${{ runner.os }}-
+      # https://github.com/marketplace/actions/setup-python
+      # ^-- This gives info on matrix testing.
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      # https://docs.github.com/en/actions/guides/building-and-testing-python#caching-dependencies
+      # ^-- How to set up caching for pip on Ubuntu
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('docs/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
       # # https://docs.github.com/en/actions/guides/building-and-testing-python#installing-dependencies
       # # ^-- This gives info on installing dependencies with pip
       # - name: Install dependencies
@@ -136,18 +136,19 @@ jobs:
       # - name: check git command
         # run: |
           # git --version
-      - name: Install package
-        run: |
-          pip install -U pip
-          pip install -e .
-      - name: Build Sphinx
-        uses: ammaraskar/sphinx-action@master
+      - name: Install dependencies
         if: ${{ github.event_name == 'push' }}
-        with:
-          docs-folder: "docs/"
-          # pre-build-command: "git --version"
-          # pre-build-command: "apt-get update -y --allow-releaseinfo-change && apt-get install git-all"
-          # build-command: make html  # default
+        run: |
+          set -ex
+          pip install -U pip
+          pip install -r docs/requirements.txt
+      - name: Build Sphinx
+        if: ${{ github.event_name == 'push' }}
+        runs: |
+          set -ex
+          pushd docs/
+          make html
+          popd
       # Deploy
       # https://github.com/peaceiris/actions-gh-pages
       - name: Deploy
