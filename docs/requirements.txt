@@ -1,3 +1,3 @@
--e git://github.com/opthub-org/opthub-client-cli@40fe2e4#egg=opthub-client-cli
+-e git://github.com/opthub-org/opthub-client-cli#egg=opthub-client-cli
 sphinx
 sphinx_rtd_theme
