@@ -133,16 +133,16 @@ jobs:
       #   if: ${{ env.ACT }}
       #   run: |
       #     apt-get update -y --allow-releaseinfo-change && apt-get install git-all
-      - name: check git command
-        run: |
-          git --version
+      # - name: check git command
+        # run: |
+          # git --version
       - name: Build Sphinx
         uses: ammaraskar/sphinx-action@master
         if: ${{ github.event_name == 'push' }}
         with:
           docs-folder: "docs/"
-          pre-build-command: "git --version"
-          # pre-build-command: "apt-get update -y --allow-releaseinfo-change && apt-get install git-all"
+          # pre-build-command: "git --version"
+          pre-build-command: "apt-get update -y --allow-releaseinfo-change && apt-get install git-all"
           # build-command: make html  # default
       # Deploy
       # https://github.com/peaceiris/actions-gh-pages
