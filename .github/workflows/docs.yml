@@ -136,13 +136,17 @@ jobs:
       # - name: check git command
         # run: |
           # git --version
+      - name: Install package
+        run: |
+          pip install -U pip
+          pip install -e .
       - name: Build Sphinx
         uses: ammaraskar/sphinx-action@master
         if: ${{ github.event_name == 'push' }}
         with:
           docs-folder: "docs/"
           # pre-build-command: "git --version"
-          pre-build-command: "apt-get update -y --allow-releaseinfo-change && apt-get install git-all"
+          # pre-build-command: "apt-get update -y --allow-releaseinfo-change && apt-get install git-all"
           # build-command: make html  # default
       # Deploy
       # https://github.com/peaceiris/actions-gh-pages
