@@ -20,8 +20,8 @@ _logger = logging.getLogger(__name__)
 # Default dates for creating a competition
 default_open_at = datetime.utcnow()
 default_close_at = default_open_at + timedelta(days=1)
-default_open_at = default_open_at.strftime('%Y-%m-%dT%H:%M:%S')
-default_close_at = default_close_at.strftime('%Y-%m-%dT%H:%M:%S')
+default_open_at = default_open_at.strftime("%Y-%m-%dT%H:%M:%S")
+default_close_at = default_close_at.strftime("%Y-%m-%dT%H:%M:%S")
 
 
 class AliasedGroup(Group):
@@ -33,14 +33,14 @@ class AliasedGroup(Group):
     >>> def long_name_command():
     ...     print('This command can be called with `l`!')
     """
+
     def get_command(self, ctx, cmd_name):
         ret = Group.get_command(self, ctx, cmd_name)
         if ret is not None:
             return ret
-        matches = [x for x in self.list_commands(ctx)
-                   if x.startswith(cmd_name)]
+        matches = [x for x in self.list_commands(ctx) if x.startswith(cmd_name)]
         if len(matches) > 1:
-            ctx.fail('Too many matches: %s' % ', '.join(sorted(matches)))
+            ctx.fail("Too many matches: %s" % ", ".join(sorted(matches)))
         if not matches:
             return None
         return Group.get_command(self, ctx, matches[0])
@@ -56,7 +56,10 @@ class StrLength(StringParamType):
     :param max: Maximum length
     :param clamp: Clamp the input if exeeded
     """
-    def __init__(self, min=None, max=None, clamp=False):  # pylint: disable=redefined-builtin
+
+    def __init__(
+        self, min=None, max=None, clamp=False
+    ):  # pylint: disable=redefined-builtin
         self.min = min
         self.max = max
         self.clamp = clamp
@@ -66,27 +69,40 @@ class StrLength(StringParamType):
         length = len(ret)
         if self.clamp:
             if self.min is not None and length < self.min:
-                return ret + ' ' * (self.min - length)
+                return ret + " " * (self.min - length)
             if self.max is not None and length > self.max:
-                return ret[:self.max]
-        if self.min is not None and length < self.min or \
-           self.max is not None and length > self.max:
+                return ret[: self.max]
+        if (
+            self.min is not None
+            and length < self.min
+            or self.max is not None
+            and length > self.max
+        ):
             if self.min is None:
                 self.fail(
-                    'Length %d is longer than the maximum valid length %d.'
-                    % (length, self.max), param, ctx)
+                    "Length %d is longer than the maximum valid length %d."
+                    % (length, self.max),
+                    param,
+                    ctx,
+                )
             elif self.max is None:
                 self.fail(
-                    'Length %d is shorter than the minimum valid length %d.'
-                    % (length, self.min), param, ctx)
+                    "Length %d is shorter than the minimum valid length %d."
+                    % (length, self.min),
+                    param,
+                    ctx,
+                )
             else:
                 self.fail(
-                    'Length %d is not in the valid range of %d to %d.'
-                    % (length, self.min, self.max), param, ctx)
+                    "Length %d is not in the valid range of %d to %d."
+                    % (length, self.min, self.max),
+                    param,
+                    ctx,
+                )
         return ret
 
     def __repr__(self):
-        return 'StrLength(%d, %d)' % (self.min, self.max)
+        return "StrLength(%d, %d)" % (self.min, self.max)
 
 
 class DateTimeTz(DateTime):
@@ -97,16 +113,14 @@ class DateTimeTz(DateTime):
 
     :param format: Time fromat
     """
-    def __init__(self, format=None):
-        super().__init__(format)
 
     def convert(self, value, param, ctx):
-        dt = DateTime.convert(self, value, param, ctx)
-        dt_tz = dt.astimezone()
+        dtm = DateTime.convert(self, value, param, ctx)
+        dt_tz = dtm.astimezone()
         return str(dt_tz)
 
     def __repr__(self):
-        return 'DateTimeTz(%d)' % (self.format)
+        return "DateTimeTz(%d)" % (self.formats)
 
 
 def root(ctx):
@@ -125,7 +139,8 @@ def touch(path, mode=0o666, exist_ok=True):
 
     This function behaves as follows:
     When the path does not exist, create an empty file with a given mode.
-    When the path exists and exist_ok is True, update the timestamp without any change of its mode and contents.
+    When the path exists and exist_ok is True, update the timestamp without any change of its mode
+    and contents.
     When the path exists and exist_ok is False, raise a FileExistsError.
 
     :param path: Path to a file
@@ -134,13 +149,13 @@ def touch(path, mode=0o666, exist_ok=True):
     """
     if not os.path.exists(path):
         # Create an empty file with a given mode
-        with open(path, "a"):
+        with open(path, "a", encoding="utf-8"):
             os.chmod(path, mode)
     else:
         if not exist_ok:
             raise FileExistsError("[Errno 17] File exists: '%s'" % path)
         # Change the timestamp without overwriting the mode and contents
-        with open(path, "a"):
+        with open(path, "a", encoding="utf-8"):
             pass
 
 
@@ -157,7 +172,7 @@ def load_config(ctx, param, value):  # pylint: disable=unused-argument
     if not os.path.exists(config_path):
         rctx.default_map = {}
     else:
-        with open(config_path) as cfg:
+        with open(config_path, encoding="utf-8") as cfg:
             rctx.default_map = yaml.safe_load(cfg)
     return value
 
@@ -172,7 +187,7 @@ def save_config(ctx, value):
     rctx = root(ctx)
     config_path = os.path.expanduser(value)
     touch(config_path, mode=0o600)
-    with open(config_path, 'w') as cfg:
+    with open(config_path, "w", encoding="utf-8") as cfg:
         yaml.dump(rctx.default_map, cfg)
     return rctx.default_map
 
@@ -185,61 +200,68 @@ def execute(ctx, document, variable_values=None, quiet=False):
     :param variable_values: variables
     :return dict: GraphQL response
     """
-    _logger.debug('execute(%s, %s, %s, %s)', ctx, document, variable_values, quiet)
-    if not ctx.obj.get('access_token'):
-        res = get_token(ctx)
-        ctx.obj['access_token'] = res['access_token']
-        ctx.obj['id_token'] = res['id_token']
-        ctx.obj['refresh_token'] = res['refresh_token']
+    _logger.debug("execute(%s, %s, %s, %s)", ctx, document, variable_values, quiet)
+    if not ctx.obj.get("access_token"):
+        res = get_tokens(ctx)
+        ctx.obj["access_token"] = res["access_token"]
+        ctx.obj["id_token"] = res["id_token"]
+        ctx.obj["refresh_token"] = res["refresh_token"]
         root(ctx).default_map.update(res)
-        save_config(ctx, ctx.obj['config'])
+        save_config(ctx, ctx.obj["config"])
 
-    _logger.info('Creating client...')
+    _logger.info("Creating client...")
     transport = RequestsHTTPTransport(
-        url=ctx.obj['url'],
-        verify=ctx.obj['verify'],
-        retries=ctx.obj['retries'],
-        headers={'authorization': 'Bearer ' + ctx.obj['access_token']} if ctx.obj['access_token'] else None,
+        url=ctx.obj["url"],
+        verify=ctx.obj["verify"],
+        retries=ctx.obj["retries"],
+        headers={"authorization": "Bearer " + ctx.obj["access_token"]}
+        if ctx.obj["access_token"]
+        else None,
     )
     client = Client(
         transport=transport,
         fetch_schema_from_transport=True,
     )
-    _logger.info('...Created.')
+    _logger.info("...Created.")
     try:
-        _logger.info('Executing the query...')
-        results = client.execute(
-            gql(document), variable_values=variable_values)
-        _logger.info('...Executed.')
+        _logger.info("Executing the query...")
+        results = client.execute(gql(document), variable_values=variable_values)
+        _logger.info("...Executed.")
     except Exception as exc:  # pylint: disable=broad-except
         # Since gql simply raises an Exception no matter what GraphQL error happens,
         # the true cause should be extracted from error messages in a stringified dict.
         # The message is like:
-        # ("{'extensions': {'path': '$', 'code': 'invalid-jwt'}, 'message': 'Could not verify JWT: JWTExpired'}",)
-        # ("{'extensions': {'path': '$', 'code': 'validation-failed'}, 'message': 'no mutations exist'}",)
-        _logger.info('...Failed.')
+        # ("{
+        #     'extensions': {'path': '$', 'code': 'invalid-jwt'},
+        #     'message': 'Could not verify JWT: JWTExpired'
+        #   }",)
+        # ("{
+        #     'extensions': {'path': '$', 'code': 'validation-failed'},
+        #     'message': 'no mutations exist'
+        # }",)
+        _logger.info("...Failed.")
         if exc.args and (
-            'Could not verify JWT: JWTExpired' in exc.args[0]
-            or ('no mutations exist' in exc.args[0] and not ctx.obj['access_token'])):
-            _logger.info('The access token has been expired.')
-            _logger.info('Refreshing tokens...')
-            res = get_token(ctx)
-            ctx.obj['access_token'] = res['access_token']
-            ctx.obj['id_token'] = res['id_token']
-            ctx.obj['refresh_token'] = res['refresh_token']
+            "Could not verify JWT: JWTExpired" in exc.args[0]
+            or ("no mutations exist" in exc.args[0] and not ctx.obj["access_token"])
+        ):
+            _logger.info("The access token has been expired.")
+            _logger.info("Refreshing tokens...")
+            res = get_tokens(ctx)
+            ctx.obj["access_token"] = res["access_token"]
+            ctx.obj["id_token"] = res["id_token"]
+            ctx.obj["refresh_token"] = res["refresh_token"]
             root(ctx).default_map.update(res)
-            save_config(ctx, ctx.obj['config'])
-            _logger.info('...Refreshed.')
+            save_config(ctx, ctx.obj["config"])
+            _logger.info("...Refreshed.")
 
             # Try again with a new access token.
-            _logger.info('Re-executing the query with a new token.')
-            transport.headers = {'authorization': 'Bearer ' + ctx.obj['access_token']}
-            results = client.execute(
-                gql(document), variable_values=variable_values)
-            _logger.info('...Executed.')
+            _logger.info("Re-executing the query with a new token.")
+            transport.headers = {"authorization": "Bearer " + ctx.obj["access_token"]}
+            results = client.execute(gql(document), variable_values=variable_values)
+            _logger.info("...Executed.")
         else:
             # Other errors are unrecoverable; abort.
-            ctx.fail('%s when executing %s\n' % (exc, document))
+            ctx.fail("%s when executing %s\n" % (exc, document))
     if not quiet:
         echo(json.dumps(results))
     return results
@@ -256,56 +278,65 @@ def authorize_device(url, client_id, scope, audience):
     :param audience: OptHub URL
     :return dict: Authentication response
     """
-    device_code_url = url + '/oauth/device/code'
-    token_url = url + '/oauth/token'
-    userinfo_url = url + '/userinfo'
+    device_code_url = url + "/oauth/device/code"
+    token_url = url + "/oauth/token"
+    userinfo_url = url + "/userinfo"
 
-    payload = {'client_id': client_id, 'scope': scope, 'audience': audience}
-    headers = {'content-type': 'application/x-www-form-urlencoded'}
-    response = requests.post(url=device_code_url, data=payload, headers=headers)
+    payload = {"client_id": client_id, "scope": scope, "audience": audience}
+    headers = {"content-type": "application/x-www-form-urlencoded"}
+    response = requests.post(
+        url=device_code_url, data=payload, headers=headers, timeout=60
+    )
     res = yaml.safe_load(response.text)
 
-    echo('=' * 70)
-    echo('To activate Opt with your account:')
+    echo("=" * 70)
+    echo("To activate Opt with your account:")
     echo()
-    echo('  1. On your browser, go to: ' + style(res['verification_uri'], fg='cyan', underline=True))
-    echo('  2. Enter the following code: ' + style(res['user_code'], bold=True))
-    echo('  3. Sign up or sign in (if not yet).')
+    echo(
+        "  1. On your browser, go to: "
+        + style(res["verification_uri"], fg="cyan", underline=True)
+    )
+    echo("  2. Enter the following code: " + style(res["user_code"], bold=True))
+    echo("  3. Sign up or sign in (if not yet).")
     echo()
-    echo('The code expires in %d minutes.' % (res['expires_in'] / 60))
-    echo('=' * 70)
+    echo("The code expires in %d minutes." % (res["expires_in"] / 60))
+    echo("=" * 70)
     echo()
-    echo('Opt is waiting for your activation...')
+    echo("Opt is waiting for your activation...")
 
-    device_code = res['device_code']
-    interval = res['interval']
+    device_code = res["device_code"]
+    interval = res["interval"]
     payload = {
-        'grant_type': 'urn:ietf:params:oauth:grant-type:device_code',
-        'device_code': device_code,
-        'client_id': client_id,
+        "grant_type": "urn:ietf:params:oauth:grant-type:device_code",
+        "device_code": device_code,
+        "client_id": client_id,
     }
 
     while True:
         sleep(interval)
-        response = requests.post(url=token_url, data=payload, headers=headers)
+        response = requests.post(
+            url=token_url, data=payload, headers=headers, timeout=60
+        )
         res = yaml.safe_load(response.text)
         if response.status_code == requests.codes.ok:  # pylint: disable=no-member
             break
-        if res['error'] == 'slow_down':
+        if res["error"] == "slow_down":
             interval += 1
-        elif res['error'] != 'authorization_pending':
-            raise Exception(res['error_description'])
+        elif res["error"] != "authorization_pending":
+            raise Exception(res["error_description"])
 
     response = requests.get(
         url=userinfo_url,
-        headers={'authorization': 'Bearer ' + res['access_token']})
+        headers={"authorization": "Bearer " + res["access_token"]},
+        timeout=60,
+    )
     userinfo = yaml.safe_load(response.text)
-    echo('Opt is activated with your account: %s' % userinfo['email'])
+    echo("Opt is activated with your account: %s" % userinfo["email"])
     echo()
     return res
 
 
-def refresh_token(url, client_id, refresh_token, scope=None):
+def refresh_tokens(url, client_id, refresh_token, scope=None):
     """Refresh the access token and id token.
 
     See https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens
@@ -316,46 +347,49 @@ def refresh_token(url, client_id, refresh_token, scope=None):
     :param scope: Space-delimited list of requested scope permissions
     :return dict: Refresh response
     """
-    token_url = url + '/oauth/token'
+    token_url = url + "/oauth/token"
     payload = {
-        'grant_type': 'refresh_token',
-        'client_id': client_id,
-        'refresh_token': refresh_token,
+        "grant_type": "refresh_token",
+        "client_id": client_id,
+        "refresh_token": refresh_token,
     }
     if scope:
-        payload['scope'] = scope
-    headers = {'content-type': 'application/x-www-form-urlencoded'}
-    response = requests.post(url=token_url, data=payload, headers=headers)
+        payload["scope"] = scope
+    headers = {"content-type": "application/x-www-form-urlencoded"}
+    response = requests.post(url=token_url, data=payload, headers=headers, timeout=60)
     res = yaml.safe_load(response.text)
     return res
 
 
-def get_token(ctx):
+def get_tokens(ctx):
     """Get new tokens.
 
     When a refresh token exists and is not expired, get new tokens via the refresh token API.
-    When a refresh token does not exists or is expired, get new tokens via the device authorization flow.
+    When a refresh token does not exists or is expired, get new tokens via the device authorization
+    flow.
 
     :param ctx: Click context
     :return dict: Authentication response
     """
     res = None
-    if ctx.obj['refresh_token']:
-        _logger.info('Try to refresh tokens.')
-        res = refresh_token(
-            url=ctx.obj['auth_url'],
-            client_id=ctx.obj['auth_client_id'],
-            refresh_token=ctx.obj['refresh_token'])
+    if ctx.obj["refresh_token"]:
+        _logger.info("Try to refresh tokens.")
+        res = refresh_tokens(
+            url=ctx.obj["auth_url"],
+            client_id=ctx.obj["auth_client_id"],
+            refresh_token=ctx.obj["refresh_token"],
+        )
 
-    if not res or 'access_token' not in res:  # If refreshing token failed
-        _logger.info('No access token.')
-        _logger.info('Try to authorize the device.')
+    if not res or "access_token" not in res:  # If refreshing token failed
+        _logger.info("No access token.")
+        _logger.info("Try to authorize the device.")
         res = authorize_device(
-            url=ctx.obj['auth_url'],
-            client_id=ctx.obj['auth_client_id'],
-            scope='openid profile email offline_access',
-            audience=ctx.obj['url'])
-    _logger.debug('res=%s', res)
+            url=ctx.obj["auth_url"],
+            client_id=ctx.obj["auth_client_id"],
+            scope="openid profile email offline_access",
+            audience=ctx.obj["url"],
+        )
+    _logger.debug("res=%s", res)
     return res
 
 
@@ -372,7 +406,7 @@ def str_to_dict(ctx, param, value):  # pylint: disable=unused-argument
     try:
         dic = yaml.safe_load(value)
         if not isinstance(dic, dict):
-            raise Exception('expected `dict` but %s' % type(dic))
+            raise Exception("expected `dict` but %s" % type(dic))
     except Exception as exc:  # pylint: disable=broad-except
-        ctx.fail('%s when converting `%s`\n' % (exc, value))
+        ctx.fail("%s when converting `%s`\n" % (exc, value))
     return dic

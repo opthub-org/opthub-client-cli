@@ -16,8 +16,8 @@ def delete():
     """Delete an object."""
 
 
-@delete.command(help='Delete a problem.')
-@click.argument('id', type=StrLength(min=2))
+@delete.command(help="Delete a problem.")
+@click.argument("id", type=StrLength(min=2))
 @click.pass_context
 def problem(ctx, **kwargs):
     """Delete a problem.
@@ -25,10 +25,10 @@ def problem(ctx, **kwargs):
     :param ctx: Click context
     :param kwargs: GraphQL variables
     """
-    _logger.debug('delete.problem(%s)', kwargs)
+    _logger.debug("delete.problem(%s)", kwargs)
     execute(
         ctx,
-        '''
+        """
         mutation delete_problem($id: String!) {
           delete_problems_by_pk(id: $id) {
             id
@@ -41,12 +41,13 @@ def problem(ctx, **kwargs):
             updated_at
           }
         }
-        ''',
-        kwargs)
+        """,
+        kwargs,
+    )
 
 
-@delete.command(help='Delete an indicator.')
-@click.argument('id', type=StrLength(min=2))
+@delete.command(help="Delete an indicator.")
+@click.argument("id", type=StrLength(min=2))
 @click.pass_context
 def indicator(ctx, **kwargs):
     """Delete an indicator.
@@ -54,10 +55,10 @@ def indicator(ctx, **kwargs):
     :param ctx: Click context
     :param kwargs: GraphQL variables
     """
-    _logger.debug('delete.indicator(%s)', kwargs)
+    _logger.debug("delete.indicator(%s)", kwargs)
     execute(
         ctx,
-        '''
+        """
         mutation($id: String!) {
           delete_indicators_by_pk(id: $id) {
             id
@@ -70,12 +71,13 @@ def indicator(ctx, **kwargs):
             updated_at
           }
         }
-        ''',
-        kwargs)
+        """,
+        kwargs,
+    )
 
 
-@delete.command(help='Delete an environment.')
-@click.argument('id', type=int)
+@delete.command(help="Delete an environment.")
+@click.argument("id", type=int)
 @click.pass_context
 def environment(ctx, **kwargs):
     """Delete an environment.
@@ -83,10 +85,10 @@ def environment(ctx, **kwargs):
     :param ctx: Click context
     :param kwargs: GraphQL variables
     """
-    _logger.debug('delete.environment(%s)', kwargs)
+    _logger.debug("delete.environment(%s)", kwargs)
     execute(
         ctx,
-        '''
+        """
         mutation($id: Int!) {
           delete_environments_by_pk(id: $id) {
             id
@@ -98,12 +100,13 @@ def environment(ctx, **kwargs):
             updated_at
           }
         }
-        ''',
-        kwargs)
+        """,
+        kwargs,
+    )
 
 
-@delete.command(help='Delete a match.')
-@click.argument('id', type=int)
+@delete.command(help="Delete a match.")
+@click.argument("id", type=int)
 @click.pass_context
 def match(ctx, **kwargs):
     """Delete a match.
@@ -111,10 +114,10 @@ def match(ctx, **kwargs):
     :param ctx: Click context
     :param kwargs: GraphQL variables
     """
-    _logger.debug('delete.match(%s)', kwargs)
+    _logger.debug("delete.match(%s)", kwargs)
     execute(
         ctx,
-        '''
+        """
         mutation($id: Int!) {
           delete_matches_by_pk(id: $id) {
             id
@@ -127,12 +130,13 @@ def match(ctx, **kwargs):
             updated_at
           }
         }
-        ''',
-        kwargs)
+        """,
+        kwargs,
+    )
 
 
-@delete.command(help='Delete a competition.')
-@click.argument('id', type=StrLength(min=2))
+@delete.command(help="Delete a competition.")
+@click.argument("id", type=StrLength(min=2))
 @click.pass_context
 def competition(ctx, **kwargs):
     """Delete a competition.
@@ -140,10 +144,10 @@ def competition(ctx, **kwargs):
     :param ctx: Click context
     :param kwargs: GraphQL variables
     """
-    _logger.debug('delete.competition(%s)', kwargs)
+    _logger.debug("delete.competition(%s)", kwargs)
     execute(
         ctx,
-        '''
+        """
         mutation($id: String!) {
           delete_competitions_by_pk(id: $id) {
             id
@@ -157,5 +161,6 @@ def competition(ctx, **kwargs):
             updated_at
           }
         }
-        ''',
-        kwargs)
+        """,
+        kwargs,
+    )
