@@ -149,13 +149,13 @@ def touch(path, mode=0o666, exist_ok=True):
     """
     if not os.path.exists(path):
         # Create an empty file with a given mode
-        with open(path, "a"):
+        with open(path, "a", encoding="utf-8"):
             os.chmod(path, mode)
     else:
         if not exist_ok:
             raise FileExistsError("[Errno 17] File exists: '%s'" % path)
         # Change the timestamp without overwriting the mode and contents
-        with open(path, "a"):
+        with open(path, "a", encoding="utf-8"):
             pass
 
 
@@ -172,7 +172,7 @@ def load_config(ctx, param, value):  # pylint: disable=unused-argument
     if not os.path.exists(config_path):
         rctx.default_map = {}
     else:
-        with open(config_path) as cfg:
+        with open(config_path, encoding="utf-8") as cfg:
             rctx.default_map = yaml.safe_load(cfg)
     return value
 
@@ -187,7 +187,7 @@ def save_config(ctx, value):
     rctx = root(ctx)
     config_path = os.path.expanduser(value)
     touch(config_path, mode=0o600)
-    with open(config_path, "w") as cfg:
+    with open(config_path, "w", encoding="utf-8") as cfg:
         yaml.dump(rctx.default_map, cfg)
     return rctx.default_map
 
@@ -202,7 +202,7 @@ def execute(ctx, document, variable_values=None, quiet=False):
     """
     _logger.debug("execute(%s, %s, %s, %s)", ctx, document, variable_values, quiet)
     if not ctx.obj.get("access_token"):
-        res = get_token(ctx)
+        res = get_tokens(ctx)
         ctx.obj["access_token"] = res["access_token"]
         ctx.obj["id_token"] = res["id_token"]
         ctx.obj["refresh_token"] = res["refresh_token"]
@@ -246,7 +246,7 @@ def execute(ctx, document, variable_values=None, quiet=False):
         ):
             _logger.info("The access token has been expired.")
             _logger.info("Refreshing tokens...")
-            res = get_token(ctx)
+            res = get_tokens(ctx)
             ctx.obj["access_token"] = res["access_token"]
             ctx.obj["id_token"] = res["id_token"]
             ctx.obj["refresh_token"] = res["refresh_token"]
@@ -336,7 +336,7 @@ def authorize_device(url, client_id, scope, audience):
     return res
 
 
-def refresh_token(url, client_id, refresh_token, scope=None):
+def refresh_tokens(url, client_id, refresh_token, scope=None):
     """Refresh the access token and id token.
 
     See https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens
@@ -361,7 +361,7 @@ def refresh_token(url, client_id, refresh_token, scope=None):
     return res
 
 
-def get_token(ctx):
+def get_tokens(ctx):
     """Get new tokens.
 
     When a refresh token exists and is not expired, get new tokens via the refresh token API.
@@ -374,7 +374,7 @@ def get_token(ctx):
     res = None
     if ctx.obj["refresh_token"]:
         _logger.info("Try to refresh tokens.")
-        res = refresh_token(
+        res = refresh_tokens(
             url=ctx.obj["auth_url"],
             client_id=ctx.obj["auth_client_id"],
             refresh_token=ctx.obj["refresh_token"],

@@ -55,6 +55,6 @@
 
 from __future__ import absolute_import
 
-__version__ = "1.6.0"
+__version__ = "1.7.3"
 
 import opthub_client_cli.opt

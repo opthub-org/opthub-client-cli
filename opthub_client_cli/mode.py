@@ -53,8 +53,6 @@ def player(ctx, **kwargs):
     """
     _logger.debug("player(%s)", kwargs)
 
-    # TODO: Check IDs here
-
     ctx.parent.parent.default_map["mode"] = "player"
     ctx.parent.parent.default_map["competition"] = kwargs["competition"]
     ctx.parent.parent.default_map["match"] = kwargs["match"]
