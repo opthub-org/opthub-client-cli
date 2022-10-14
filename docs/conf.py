@@ -13,6 +13,7 @@
 import logging
 import os
 import sys
+from datetime import date
 
 import opthub_client_cli
 
@@ -23,7 +24,7 @@ logger = logging.getLogger(__name__)
 # -- Project information -----------------------------------------------------
 
 project = "Opthub Client CLI"
-copyright = "2020 Naoki Hamada"
+copyright = "{} SIG-RBP".format(date.today().year)
 author = "Naoki Hamada"
 
 # The full version, including alpha/beta/rc tags
@@ -98,7 +99,6 @@ def linkcode_resolve(domain, info):
         for part in info["fullname"].split("."):
             obj = getattr(obj, part)
         import inspect
-        import os
 
         fn = inspect.getsourcefile(obj)
         fn = os.path.relpath(fn, start=os.path.dirname(opthub_client_cli.__file__))
@@ -113,4 +113,7 @@ def linkcode_resolve(domain, info):
         logger.warning(e)
         filename = info["module"].replace(".", "/") + ".py"
     tag = "master"  # if 'dev' in release else ('v' + release)
-    return "https://github.com/opthub-org/opthub-client-cli/blob/%s/%s" % (tag, filename)
+    return "https://github.com/opthub-org/opthub-client-cli/blob/%s/%s" % (
+        tag,
+        filename,
+    )
