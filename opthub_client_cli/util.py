@@ -2,18 +2,18 @@
 """
 Utilities.
 """
-from datetime import datetime, timedelta
 import json
 import logging
 import os
+from datetime import datetime, timedelta
 from time import sleep
 
-from click import DateTime, Group, echo, style
-from click.types import StringParamType
-from gql import gql, Client
-from gql.transport.requests import RequestsHTTPTransport
 import requests
 import yaml
+from click import DateTime, Group, echo, style
+from click.types import StringParamType
+from gql import Client, gql
+from gql.transport.requests import RequestsHTTPTransport
 
 _logger = logging.getLogger(__name__)
 

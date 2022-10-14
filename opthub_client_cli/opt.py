@@ -14,15 +14,9 @@ from opthub_client_cli.delete import delete
 from opthub_client_cli.mode import mode
 from opthub_client_cli.read import read
 from opthub_client_cli.update import update
-from opthub_client_cli.util import (
-    default_open_at,
-    default_close_at,
-    execute,
-    load_config,
-    AliasedGroup,
-    DateTimeTz,
-    StrLength,
-)
+from opthub_client_cli.util import (AliasedGroup, DateTimeTz, StrLength,
+                                    default_close_at, default_open_at, execute,
+                                    load_config)
 
 _logger = logging.getLogger(__name__)
 
