@@ -17,14 +17,14 @@ def read():
 
 
 @read.command(help="List users on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="id: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s", "--sort", type=str, callback=str_to_dict, default="id: desc", help="Sort."
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def users(ctx, **kwargs):
     """List users on OptHub.
@@ -54,18 +54,24 @@ def users(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List problems on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def problems(ctx, **kwargs):
     """List problems on OptHub.
@@ -98,18 +104,24 @@ def problems(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List indicators on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def indicators(ctx, **kwargs):
     """List indicators on OptHub.
@@ -142,18 +154,24 @@ def indicators(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List competitions on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def competitions(ctx, **kwargs):
     """List competitions on OptHub.
@@ -188,18 +206,24 @@ def competitions(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List progress on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def progress(ctx, **kwargs):
     """List progress on OptHub.
@@ -245,18 +269,24 @@ def progress(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List environments on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def environments(ctx, **kwargs):
     """List environments on OptHub.
@@ -289,18 +319,24 @@ def environments(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List matches on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def matches(ctx, **kwargs):
     """List matches on OptHub.
@@ -336,18 +372,24 @@ def matches(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
 
 
 @read.command(help="List solutions on OptHub.")
-@click.option("-q", "--query", type=str, callback=str_to_dict,
-              help="Search query.")
-@click.option("-s", "--sort", type=str, callback=str_to_dict, 
-              default="updated_at: desc", help="Sort.")
-@click.option("-o", "--offset", type=click.IntRange(min=0),
-              default=0, help="Offset.")
-@click.option("-l", "--limit", type=click.IntRange(1, 10000),
-              default=100, help="Limit.")
+@click.option("-q", "--query", type=str, callback=str_to_dict, help="Search query.")
+@click.option(
+    "-s",
+    "--sort",
+    type=str,
+    callback=str_to_dict,
+    default="updated_at: desc",
+    help="Sort.",
+)
+@click.option("-o", "--offset", type=click.IntRange(min=0), default=0, help="Offset.")
+@click.option(
+    "-l", "--limit", type=click.IntRange(1, 10000), default=100, help="Limit."
+)
 @click.pass_context
 def solutions(ctx, **kwargs):
     """List solutions on OptHub.
@@ -390,4 +432,5 @@ def solutions(ctx, **kwargs):
           }
         }
         """,
-        kwargs)
+        kwargs,
+    )
