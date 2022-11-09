@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 Utilities.
 """
@@ -40,7 +39,7 @@ class AliasedGroup(Group):
             return ret
         matches = [x for x in self.list_commands(ctx) if x.startswith(cmd_name)]
         if len(matches) > 1:
-            ctx.fail("Too many matches: %s" % ", ".join(sorted(matches)))
+            ctx.fail(f"Too many matches: {', '.join(sorted(matches))}")
         if not matches:
             return None
         return Group.get_command(self, ctx, matches[0])
@@ -80,29 +79,26 @@ class StrLength(StringParamType):
         ):
             if self.min is None:
                 self.fail(
-                    "Length %d is longer than the maximum valid length %d."
-                    % (length, self.max),
+                    f"Length {length} is longer than the maximum valid length {self.max}.",
                     param,
                     ctx,
                 )
             elif self.max is None:
                 self.fail(
-                    "Length %d is shorter than the minimum valid length %d."
-                    % (length, self.min),
+                    f"Length {length} is shorter than the minimum valid length {self.min}.",
                     param,
                     ctx,
                 )
             else:
                 self.fail(
-                    "Length %d is not in the valid range of %d to %d."
-                    % (length, self.min, self.max),
+                    f"Length {length} is not in the valid range of {self.min} to {self.max}.",
                     param,
                     ctx,
                 )
         return ret
 
     def __repr__(self):
-        return "StrLength(%d, %d)" % (self.min, self.max)
+        return f"StrLength({self.min}, {self.max})"
 
 
 class DateTimeTz(DateTime):
@@ -120,7 +116,7 @@ class DateTimeTz(DateTime):
         return str(dt_tz)
 
     def __repr__(self):
-        return "DateTimeTz(%d)" % (self.formats)
+        return f"DateTimeTz({self.formats})"
 
 
 def root(ctx):
@@ -153,7 +149,7 @@ def touch(path, mode=0o666, exist_ok=True):
             os.chmod(path, mode)
     else:
         if not exist_ok:
-            raise FileExistsError("[Errno 17] File exists: '%s'" % path)
+            raise FileExistsError(f"[Errno 17] File exists: '{path}'")
         # Change the timestamp without overwriting the mode and contents
         with open(path, "a", encoding="utf-8"):
             pass
@@ -261,7 +257,7 @@ def execute(ctx, document, variable_values=None, quiet=False):
             _logger.info("...Executed.")
         else:
             # Other errors are unrecoverable; abort.
-            ctx.fail("%s when executing %s\n" % (exc, document))
+            ctx.fail(f"{exc} when executing {document}\n")
     if not quiet:
         echo(json.dumps(results))
     return results
@@ -299,7 +295,7 @@ def authorize_device(url, client_id, scope, audience):
     echo("  2. Enter the following code: " + style(res["user_code"], bold=True))
     echo("  3. Sign up or sign in (if not yet).")
     echo()
-    echo("The code expires in %d minutes." % (res["expires_in"] / 60))
+    echo(f"The code expires in {res['expires_in'] / 60} minutes.")
     echo("=" * 70)
     echo()
     echo("Opt is waiting for your activation...")
@@ -331,7 +327,7 @@ def authorize_device(url, client_id, scope, audience):
         timeout=60,
     )
     userinfo = yaml.safe_load(response.text)
-    echo("Opt is activated with your account: %s" % userinfo["email"])
+    echo("Opt is activated with your account: " + userinfo["email"])
     echo()
     return res
 
@@ -406,7 +402,7 @@ def str_to_dict(ctx, param, value):  # pylint: disable=unused-argument
     try:
         dic = yaml.safe_load(value)
         if not isinstance(dic, dict):
-            raise Exception("expected `dict` but %s" % type(dic))
+            raise Exception(f"expected `dict` but {type(dic)}")
     except Exception as exc:  # pylint: disable=broad-except
-        ctx.fail("%s when converting `%s`\n" % (exc, value))
+        ctx.fail(f"{exc} when converting `{value}`\n")
     return dic

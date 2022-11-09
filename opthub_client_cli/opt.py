@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 CLI commands.
 """
@@ -113,7 +112,6 @@ opt.add_command(create)
 opt.add_command(read)
 opt.add_command(update)
 opt.add_command(delete)
-opt.add_command(mode)
 
 
 @opt.command(help="Show status.")

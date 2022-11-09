@@ -5,7 +5,7 @@ This package provides a commandline interface to operate OptHub.
 
 ## Requirements
 
-Python 2.7 or 3.5+
+Python >=3.6
 
 
 ## Installation

@@ -1,4 +1,3 @@
-# coding: utf-8
 """
 Low-level read commands.
 """

@@ -1,4 +1,3 @@
-# coding: utf-8
 """
     OptHub API
 
@@ -53,8 +52,6 @@
 """
 
 
-from __future__ import absolute_import
-
-__version__ = "1.7.3"
+__version__ = "1.8.0"
 
 import opthub_client_cli.opt
