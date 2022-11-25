@@ -11,6 +11,7 @@ import requests
 import yaml
 from click import DateTime, Group, echo, style
 from click.types import StringParamType
+from portalocker import Lock, LOCK_EX, LOCK_SH
 from gql import Client, gql
 from gql.transport.requests import RequestsHTTPTransport
 
@@ -145,13 +146,13 @@ def touch(path, mode=0o666, exist_ok=True):
     """
     if not os.path.exists(path):
         # Create an empty file with a given mode
-        with open(path, "a", encoding="utf-8"):
+        with Lock(path, "a", flags=LOCK_EX, encoding="utf-8"):
             os.chmod(path, mode)
     else:
         if not exist_ok:
             raise FileExistsError(f"[Errno 17] File exists: '{path}'")
         # Change the timestamp without overwriting the mode and contents
-        with open(path, "a", encoding="utf-8"):
+        with Lock(path, "a", flags=LOCK_EX, encoding="utf-8"):
             pass
 
 
@@ -168,7 +169,7 @@ def load_config(ctx, param, value):  # pylint: disable=unused-argument
     if not os.path.exists(config_path):
         rctx.default_map = {}
     else:
-        with open(config_path, encoding="utf-8") as cfg:
+        with Lock(config_path, "r", flags=LOCK_SH, encoding="utf-8") as cfg:
             rctx.default_map = yaml.safe_load(cfg)
     return value
 
@@ -183,7 +184,7 @@ def save_config(ctx, value):
     rctx = root(ctx)
     config_path = os.path.expanduser(value)
     touch(config_path, mode=0o600)
-    with open(config_path, "w", encoding="utf-8") as cfg:
+    with Lock(config_path, "w", flags=LOCK_EX, encoding="utf-8") as cfg:
         yaml.dump(rctx.default_map, cfg)
     return rctx.default_map
 
