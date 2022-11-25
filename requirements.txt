@@ -3,3 +3,4 @@ setuptools >= 21.0.0
 click >= 3.0
 PyYAML >= 5.1
 gql[all] >= 3.0.0
+portalock >= 2.0.0
