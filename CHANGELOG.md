@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.2](https://github.com/opthub-org/opthub-client-cli/compare/v1.9.1...v1.9.2) (2023-10-18)
+
+
+### Dependencies
+
+* update pytest ([#40](https://github.com/opthub-org/opthub-client-cli/issues/40)) ([05b76b8](https://github.com/opthub-org/opthub-client-cli/commit/05b76b80417aaed33f491d7be37e60dbfff1d566))
+
 ## [1.9.1](https://github.com/opthub-org/opthub-client-cli/compare/v1.9.0...v1.9.1) (2023-10-18)
 
 
