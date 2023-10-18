@@ -19,7 +19,7 @@ jobs:
       uses: google-github-actions/release-please-action@v3
       with:
         release-type: python
-        package-name: torch_bsf
+        package-name: opthub_client_cli
 
   pypi:
     needs: github-release
