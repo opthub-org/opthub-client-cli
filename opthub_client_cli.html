@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>opthub_client_cli package &mdash; Opthub Client CLI 1.9.2 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=574b2d58"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="opthub_client_cli" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Opthub Client CLI
+          </a>
+              <div class="version">
+                1.9.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">opthub_client_cli</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">opthub_client_cli package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.create">opthub_client_cli.create module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.delete">opthub_client_cli.delete module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.mode">opthub_client_cli.mode module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.opt">opthub_client_cli.opt module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.read">opthub_client_cli.read module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.update">opthub_client_cli.update module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.update.mutation"><code class="docutils literal notranslate"><span class="pre">mutation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli.util">opthub_client_cli.util module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.AliasedGroup"><code class="docutils literal notranslate"><span class="pre">AliasedGroup</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.DateTimeTz"><code class="docutils literal notranslate"><span class="pre">DateTimeTz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.StrLength"><code class="docutils literal notranslate"><span class="pre">StrLength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.authorize_device"><code class="docutils literal notranslate"><span class="pre">authorize_device()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.execute"><code class="docutils literal notranslate"><span class="pre">execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.get_tokens"><code class="docutils literal notranslate"><span class="pre">get_tokens()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.refresh_tokens"><code class="docutils literal notranslate"><span class="pre">refresh_tokens()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.root"><code class="docutils literal notranslate"><span class="pre">root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.save_config"><code class="docutils literal notranslate"><span class="pre">save_config()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.str_to_dict"><code class="docutils literal notranslate"><span class="pre">str_to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opthub_client_cli.util.touch"><code class="docutils literal notranslate"><span class="pre">touch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-opthub_client_cli">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-run-a-competition">How to run a competition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#authorization-model">Authorization model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Opthub Client CLI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">opthub_client_cli</a></li>
+      <li class="breadcrumb-item active">opthub_client_cli package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opthub_client_cli.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="opthub-client-cli-package">
+<h1>opthub_client_cli package<a class="headerlink" href="#opthub-client-cli-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-opthub_client_cli.create">
+<span id="opthub-client-cli-create-module"></span><h2>opthub_client_cli.create module<a class="headerlink" href="#module-opthub_client_cli.create" title="Link to this heading"></a></h2>
+<p>Low-level create commands.</p>
+</section>
+<section id="module-opthub_client_cli.delete">
+<span id="opthub-client-cli-delete-module"></span><h2>opthub_client_cli.delete module<a class="headerlink" href="#module-opthub_client_cli.delete" title="Link to this heading"></a></h2>
+<p>Low-level delete commands.</p>
+</section>
+<section id="module-opthub_client_cli.mode">
+<span id="opthub-client-cli-mode-module"></span><h2>opthub_client_cli.mode module<a class="headerlink" href="#module-opthub_client_cli.mode" title="Link to this heading"></a></h2>
+<p>Mode commands.</p>
+</section>
+<section id="module-opthub_client_cli.opt">
+<span id="opthub-client-cli-opt-module"></span><h2>opthub_client_cli.opt module<a class="headerlink" href="#module-opthub_client_cli.opt" title="Link to this heading"></a></h2>
+<p>CLI commands.</p>
+</section>
+<section id="module-opthub_client_cli.read">
+<span id="opthub-client-cli-read-module"></span><h2>opthub_client_cli.read module<a class="headerlink" href="#module-opthub_client_cli.read" title="Link to this heading"></a></h2>
+<p>Low-level read commands.</p>
+</section>
+<section id="module-opthub_client_cli.update">
+<span id="opthub-client-cli-update-module"></span><h2>opthub_client_cli.update module<a class="headerlink" href="#module-opthub_client_cli.update" title="Link to this heading"></a></h2>
+<p>Low-level update commands.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.update.mutation">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.update.</span></span><span class="sig-name descname"><span class="pre">mutation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/update.py#L29-L43"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.update.mutation" title="Link to this definition"></a></dt>
+<dd><p>Build a GQL mutation document.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – Table name on OptHub</p></li>
+<li><p><strong>ctx</strong> – Click context</p></li>
+<li><p><strong>kwargs</strong> – GraphQL variables</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opthub_client_cli.util">
+<span id="opthub-client-cli-util-module"></span><h2>opthub_client_cli.util module<a class="headerlink" href="#module-opthub_client_cli.util" title="Link to this heading"></a></h2>
+<p>Utilities.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="opthub_client_cli.util.AliasedGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">AliasedGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commands</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.MutableMapping" title="(in Python v3.12)"><span class="pre">MutableMapping</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Command</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.12)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Command</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">attrs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L27-L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.AliasedGroup" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></p>
+<p>A Click group with short subcommands.</p>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="bp">cls</span><span class="o">=</span><span class="n">AliasedGroup</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">long_name_command</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This command can be called with `l`!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="opthub_client_cli.util.AliasedGroup.get_command">
+<span class="sig-name descname"><span class="pre">get_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmd_name</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L37-L46"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.AliasedGroup.get_command" title="Link to this definition"></a></dt>
+<dd><p>Given a context and a command name, this returns a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Command</span></code> object if it exists or returns <cite>None</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opthub_client_cli.util.DateTimeTz">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">DateTimeTz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.12)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L105-L120"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.DateTimeTz" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DateTime</span></code></p>
+<p>A Click option type of datetime with timezone.</p>
+<p>This is basically the same as <cite>click.DateTime</cite>, except for additional
+functionalities of timezone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>format</strong> – Time fromat</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="opthub_client_cli.util.DateTimeTz.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L114-L117"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.DateTimeTz.convert" title="Link to this definition"></a></dt>
+<dd><p>Convert the value to the correct type. This is not called if
+the value is <code class="docutils literal notranslate"><span class="pre">None</span></code> (the missing value).</p>
+<p>This must accept string values from the command line, as well as
+values that are already the correct type. It may also convert
+other compatible types.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">param</span></code> and <code class="docutils literal notranslate"><span class="pre">ctx</span></code> arguments may be <code class="docutils literal notranslate"><span class="pre">None</span></code> in certain
+situations, such as when converting prompt input.</p>
+<p>If the value cannot be converted, call <code class="xref py py-meth docutils literal notranslate"><span class="pre">fail()</span></code> with a
+descriptive message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – The value to convert.</p></li>
+<li><p><strong>param</strong> – The parameter that is using this type to convert
+its value. May be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>ctx</strong> – The current context that arrived at this value. May
+be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="opthub_client_cli.util.StrLength">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">StrLength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L49-L102"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.StrLength" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">StringParamType</span></code></p>
+<p>A Click option type of string with length validation.</p>
+<p>This is basically the same as <cite>str</cite>, except for additional
+functionalities of length validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>min</strong> – Minimum length</p></li>
+<li><p><strong>max</strong> – Maximum length</p></li>
+<li><p><strong>clamp</strong> – Clamp the input if exeeded</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="opthub_client_cli.util.StrLength.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L67-L99"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.StrLength.convert" title="Link to this definition"></a></dt>
+<dd><p>Convert the value to the correct type. This is not called if
+the value is <code class="docutils literal notranslate"><span class="pre">None</span></code> (the missing value).</p>
+<p>This must accept string values from the command line, as well as
+values that are already the correct type. It may also convert
+other compatible types.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">param</span></code> and <code class="docutils literal notranslate"><span class="pre">ctx</span></code> arguments may be <code class="docutils literal notranslate"><span class="pre">None</span></code> in certain
+situations, such as when converting prompt input.</p>
+<p>If the value cannot be converted, call <code class="xref py py-meth docutils literal notranslate"><span class="pre">fail()</span></code> with a
+descriptive message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – The value to convert.</p></li>
+<li><p><strong>param</strong> – The parameter that is using this type to convert
+its value. May be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>ctx</strong> – The current context that arrived at this value. May
+be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.authorize_device">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">authorize_device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audience</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L270-L336"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.authorize_device" title="Link to this definition"></a></dt>
+<dd><p>Get new tokens via the device authorization flow.</p>
+<p>See <a class="reference external" href="https://auth0.com/docs/flows/device-authorization-flow">https://auth0.com/docs/flows/device-authorization-flow</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – Authentication URL</p></li>
+<li><p><strong>client_id</strong> – Client ID of this CLI tool</p></li>
+<li><p><strong>scope</strong> – Space-delimited list of requested scope permissions</p></li>
+<li><p><strong>audience</strong> – OptHub URL</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Authentication response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.execute">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variable_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L192-L267"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.execute" title="Link to this definition"></a></dt>
+<dd><p>Execute a GraphQL document and print results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – Click context</p></li>
+<li><p><strong>document</strong> – GraphQL document</p></li>
+<li><p><strong>variable_values</strong> – variables</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>GraphQL response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.get_tokens">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">get_tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L364-L393"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.get_tokens" title="Link to this definition"></a></dt>
+<dd><p>Get new tokens.</p>
+<p>When a refresh token exists and is not expired, get new tokens via the refresh token API.
+When a refresh token does not exists or is expired, get new tokens via the device authorization
+flow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – Click context</p>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Authentication response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.load_config">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L159-L174"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.load_config" title="Link to this definition"></a></dt>
+<dd><p>Load <cite>ctx.default_map</cite> from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – Click context</p></li>
+<li><p><strong>param</strong> – Parameter info</p></li>
+<li><p><strong>value</strong> – File name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Loaded config</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.refresh_tokens">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">refresh_tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L339-L361"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.refresh_tokens" title="Link to this definition"></a></dt>
+<dd><p>Refresh the access token and id token.</p>
+<p>See <a class="reference external" href="https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens">https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> – Authentication URL</p></li>
+<li><p><strong>client_id</strong> – Client ID of this CLI tool</p></li>
+<li><p><strong>refresh_token</strong> – Refresh token to use</p></li>
+<li><p><strong>scope</strong> – Space-delimited list of requested scope permissions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Refresh response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.root">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L123-L131"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.root" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the root context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctx</strong> – Click context</p>
+</dd>
+<dt class="field-even">Return ctx<span class="colon">:</span></dt>
+<dd class="field-even"><p>Click root context</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.save_config">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">save_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L177-L189"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.save_config" title="Link to this definition"></a></dt>
+<dd><p>Save <cite>ctx.default_map</cite> to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – Click context</p></li>
+<li><p><strong>value</strong> – File name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Saved config</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.str_to_dict">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">str_to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L396-L412"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.str_to_dict" title="Link to this definition"></a></dt>
+<dd><p>Convert a YAML string to a dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – Click context</p></li>
+<li><p><strong>param</strong> – Parameter info</p></li>
+<li><p><strong>value</strong> – YAML string</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return dict<span class="colon">:</span></dt>
+<dd class="field-even"><p>Python dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="opthub_client_cli.util.touch">
+<span class="sig-prename descclassname"><span class="pre">opthub_client_cli.util.</span></span><span class="sig-name descname"><span class="pre">touch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">438</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exist_ok</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/opthub-org/opthub-client-cli/blob/master/opthub_client_cli/util.py#L134-L156"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#opthub_client_cli.util.touch" title="Link to this definition"></a></dt>
+<dd><p>Emulate pathlib.Path.touch(mode, exist_ok), which is available in Python 3.4+.</p>
+<p>This function behaves as follows:
+When the path does not exist, create an empty file with a given mode.
+When the path exists and exist_ok is True, update the timestamp without any change of its mode
+and contents.
+When the path exists and exist_ok is False, raise a FileExistsError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – Path to a file</p></li>
+<li><p><strong>mode</strong> – Permission triplet</p></li>
+<li><p><strong>exist_ok</strong> – Do not raise errors when the path exists</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-opthub_client_cli">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-opthub_client_cli" title="Link to this heading"></a></h2>
+<p>OptHub API</p>
+<p>OptHub is a “collaborative optimization” website that provides a platform
+for socially hosting, analyzing, and solving black-box optimization
+problems. On this site, a user host a competition in which other users join
+to solve problems provided by the host user.
+This API provides basic CRUD operations (create, read, update, delete) to
+run competitions.</p>
+<section id="how-to-run-a-competition">
+<h3>How to run a competition<a class="headerlink" href="#how-to-run-a-competition" title="Link to this heading"></a></h3>
+<p>Organizers:
+1. Create a user.
+2. Create problems.
+3. Create indicators.
+4. Create a competition.
+5. Create matches.</p>
+<p>Participants:
+1. Create a user.
+2. Create a player.
+3. Create a trial.
+4. Create evaluations.</p>
+</section>
+<section id="authorization-model">
+<h3>Authorization model<a class="headerlink" href="#authorization-model" title="Link to this heading"></a></h3>
+<p>Roles:
+- guest: Everyone without account.
+- user: Everyone with account.
+- owner: The user who created an object to access.
+- admin: System administrators.</p>
+<p>Permission:
+| Object      | guest | user  | owner | admin |
+<a href="#id1"><span class="problematic" id="id2">|-------------|</span></a>——-<a href="#id3"><span class="problematic" id="id4">|-------|</span></a>——-<a href="#id5"><span class="problematic" id="id6">|-------|</span></a>
+| User        | CR    | CR    | CRU   | CRUD  |
+| Problem     |  R    | CR    | CRU   | CRUD  |
+| Indicator   |  R    | CR    | CRU   | CRUD  |
+| Competition |  R    | CR    | CRU   | CRUD  |
+| Match       |  R    | CR    | CRU   | CRUD  |
+| Solution    |  r    | cr    | cR    | CRUD  |</p>
+<ul class="simple">
+<li><p>C: Create an object anytime.</p></li>
+<li><p>R: Read an object anytime.</p></li>
+<li><p>U: Update an object anytime.</p></li>
+<li><p>D: Delete an object anytime.</p></li>
+<li><p>c: Create an object in the competition period.</p></li>
+<li><p>r: Read an object after the competition period.</p></li>
+</ul>
+<p>Contact: Naoki Hamada (<a class="reference external" href="mailto:hmkz&#37;&#52;&#48;s101&#46;xrea&#46;com">hmkz<span>&#64;</span>s101<span>&#46;</span>xrea<span>&#46;</span>com</a>)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="opthub_client_cli" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SIG-RBP.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
