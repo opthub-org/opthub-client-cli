@@ -10,12 +10,17 @@ import yaml
 
 from opthub_client_cli.create import create
 from opthub_client_cli.delete import delete
-from opthub_client_cli.mode import mode
 from opthub_client_cli.read import read
 from opthub_client_cli.update import update
-from opthub_client_cli.util import (AliasedGroup, DateTimeTz, StrLength,
-                                    default_close_at, default_open_at, execute,
-                                    load_config)
+from opthub_client_cli.util import (
+    AliasedGroup,
+    DateTimeTz,
+    StrLength,
+    default_close_at,
+    default_open_at,
+    execute,
+    load_config,
+)
 
 _logger = logging.getLogger(__name__)
 
@@ -30,12 +35,12 @@ _logger = logging.getLogger(__name__)
     help="OptHub URL.",
 )
 @click.option(
-    "-m",
-    "--mode",
-    envvar="OPTHUB_MODE",
-    type=click.Choice(["guest", "owner", "player"], case_sensitive=False),
-    default="guest",
-    help="Operation mode.",
+    "-r",
+    "--role",
+    envvar="OPTHUB_ROLE",
+    type=click.Choice(["anonymous", "user", "admin"], case_sensitive=False),
+    default="user",
+    help="Role based access control.",
 )
 @click.option(
     "--verify/--no-verify",
@@ -44,7 +49,7 @@ _logger = logging.getLogger(__name__)
     help="Verity SSL certificate.",
 )
 @click.option(
-    "-r",
+    "-t",
     "--retries",
     envvar="OPTHUB_RETRIES",
     type=click.IntRange(min=0),
@@ -118,10 +123,6 @@ opt.add_command(delete)
 @click.pass_context
 def status(ctx):
     """Show status.
-
-    Guest mode: show the summary of OptHub status.
-    Owner mode: show the status of the current user.
-    Player mode: show the status of the current player.
 
     :param ctx: Click context
     """
