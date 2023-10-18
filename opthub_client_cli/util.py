@@ -211,7 +211,10 @@ def execute(ctx, document, variable_values=None, quiet=False):
         url=ctx.obj["url"],
         verify=ctx.obj["verify"],
         retries=ctx.obj["retries"],
-        headers={"authorization": "Bearer " + ctx.obj["access_token"]}
+        headers={
+            "authorization": "Bearer " + ctx.obj["access_token"],
+            "x-hasura-role": ctx.obj.get("role", "user"),
+        }
         if ctx.obj["access_token"]
         else None,
     )
